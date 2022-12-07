@@ -51,6 +51,23 @@ app.get("/patient", async (req, res) => {
   }
 });
 
+app.get("/patient/:id", async (req, res) => {
+  try {
+    let connection = await mongoClient.connect(URL);
+    let db = connection.db("Users");
+    let patient = await db
+      .collection("Registered Patients")
+      .findOne({ _id: mongodb.ObjectId(req.params.id) });
+    await connection.close();
+    res.json(patient);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Error in getting user",
+    });
+  }
+});
+
 app.listen(PORT, () => {
   console.log("Web Server started");
 });

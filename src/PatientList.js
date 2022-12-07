@@ -41,6 +41,7 @@ function PatientList() {
               <th className="col-auto">License Number</th>
               <th className="col-auto">Marital Status</th>
               <th className="col-auto">Billing Note</th>
+              <th className="col-auto">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -55,6 +56,9 @@ function PatientList() {
                   <td>{values.License}</td>
                   <td>{values.maritalStatus}</td>
                   <td>{values.billingNote}</td>
+                  <Link to={`/patient/${values._id}`}>
+                    <button className="btn btn-success"> View </button>
+                  </Link>
                 </tr>
               );
             })}

@@ -2,6 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Search from "./Search";
 function Patient() {
   let navigate = useNavigate();
   const formik = useFormik({
@@ -79,7 +80,7 @@ function Patient() {
     onSubmit: async (values) => {
       try {
         await axios.post("http://localhost:3001/patient", values);
-        alert("Data Posted successfully");
+        alert("Patient added successfully");
         formik.resetForm();
         navigate("/PatientList");
       } catch (error) {
@@ -90,14 +91,6 @@ function Patient() {
   });
   return (
     <div className="container">
-      <div>
-        <h2 className="m-3"> Search or Add Patient</h2>
-        <input
-          type={"text"}
-          className="form-control m-2"
-          placeholder="Who"
-        ></input>
-      </div>
       <form onSubmit={formik.handleSubmit}>
         <div className="row g-3 align-items-center m-3">
           <div className="row col-6">
